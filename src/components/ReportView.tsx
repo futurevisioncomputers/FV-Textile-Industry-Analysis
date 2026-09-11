@@ -99,13 +99,7 @@ export const ReportView: React.FC<ReportViewProps> = ({
     'data_cleaning',
   ];
 
-  const customDataTabsIds = [
-    'textile_overview',
-    'machinery',
-    'employee',
-  ];
-
-  const allowedTabs = isMockData ? allTabsIds : customDataTabsIds;
+  const allowedTabs = allTabsIds;
 
   const activeTabResolved = allowedTabs.includes(activeSubTab) ? activeSubTab : 'textile_overview';
 
@@ -194,13 +188,7 @@ ${insights.map((i) => `### ${i.title} (${i.category})\n${i.description}\n*Action
     { id: 'data_cleaning', label: 'Data Cleaning Agent', icon: Sparkles },
   ];
 
-  const customDataTabs = [
-    { id: 'textile_overview', label: 'Mill Overview & Insights', icon: Factory },
-    { id: 'machinery', label: 'Machinery & Equipment Report', icon: Cog },
-    { id: 'employee', label: 'Employee & Operator Production', icon: Users },
-  ];
-
-  const navTabs = isMockData ? allTabs : customDataTabs;
+  const navTabs = allTabs;
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-6">
@@ -262,14 +250,14 @@ ${insights.map((i) => `### ${i.title} (${i.category})\n${i.description}\n*Action
           <TextileOverviewTab onNavigateTab={(tabId) => setActiveSubTab(tabId)} sheets={sheets} />
         )}
         {activeTabResolved === 'machinery' && <MachineryReportTab sheets={sheets} />}
-        {activeTabResolved === 'machine_expenses' && <MachineExpensesTab sheets={sheets} />}
+        {activeTabResolved === 'machine_expenses' && <MachineExpensesTab />}
         {activeTabResolved === 'employee' && <EmployeeProductionTab sheets={sheets} />}
-        {activeTabResolved === 'employee_expenses' && <EmployeeExpensesTab sheets={sheets} />}
-        {activeTabResolved === 'products' && <ProductUnitsTab sheets={sheets} />}
-        {activeTabResolved === 'time' && <TimeReportsTab sheets={sheets} />}
-        {activeTabResolved === 'variance' && <ProductionVarianceTab sheets={sheets} />}
-        {activeTabResolved === 'category_visuals' && <VisualCategoryReportTab sheets={sheets} />}
-        {activeTabResolved === 'data_cleaning' && <DataCleaningAgentTab sheets={sheets} />}
+        {activeTabResolved === 'employee_expenses' && <EmployeeExpensesTab />}
+        {activeTabResolved === 'products' && <ProductUnitsTab />}
+        {activeTabResolved === 'time' && <TimeReportsTab />}
+        {activeTabResolved === 'variance' && <ProductionVarianceTab />}
+        {activeTabResolved === 'category_visuals' && <VisualCategoryReportTab />}
+        {activeTabResolved === 'data_cleaning' && <DataCleaningAgentTab />}
       </div>
 
       {/* Interactive AI Agent Briefing Q&A Box (Persistent at bottom for instant inquiry across tabs) */}

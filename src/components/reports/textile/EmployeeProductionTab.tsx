@@ -55,6 +55,7 @@ export const EmployeeProductionTab: React.FC<EmployeeProductionTabProps> = ({ sh
 
     const nameCol = stringCols[0] || numCols[0];
     const roleCol = stringCols.find(c => c.toLowerCase().includes('role') || c.toLowerCase().includes('title') || c.toLowerCase().includes('job')) || stringCols[1] || nameCol;
+    const shiftCol = stringCols.find(c => c.toLowerCase().includes('shift')) || stringCols[2];
     
     const actualCol = numCols.find(c => c.toLowerCase().includes('actual') || c.toLowerCase().includes('output') || c.toLowerCase().includes('prod')) || numCols[0];
     const idealCol = numCols.find(c => c !== actualCol && (c.toLowerCase().includes('ideal') || c.toLowerCase().includes('target') || c.toLowerCase().includes('capa'))) || actualCol;
@@ -73,7 +74,7 @@ export const EmployeeProductionTab: React.FC<EmployeeProductionTabProps> = ({ sh
         id: `EMP-${idx + 1000}`,
         name: String(row[nameCol] || `Operator ${idx + 1}`),
         role: String(row[roleCol] || 'Weaver'),
-        shift: 'Dynamic Shift',
+        shift: shiftCol && row[shiftCol] ? String(row[shiftCol]) : 'Dynamic Shift',
         shed: empSheet.name,
         machine: 'Dynamic Machine',
         idealOutputMeters: idealVal,
@@ -100,13 +101,35 @@ export const EmployeeProductionTab: React.FC<EmployeeProductionTabProps> = ({ sh
     return matchesShift && matchesSearch;
   });
 
-  const shiftSummary = customData ? [
-    { shift: 'All Shifts', weavers: baseData.length, avgYield: 95.0, output: '100,000 m', efficiency: '95%' }
-  ] : [
+  let shiftSummary = isMock ? [
     { shift: 'Shift A (06:00 - 14:00)', weavers: 10, avgYield: 98.0, output: '58,400 m', efficiency: '96.5%' },
     { shift: 'Shift B (14:00 - 22:00)', weavers: 8, avgYield: 95.8, output: '44,200 m', efficiency: '92.4%' },
     { shift: 'Shift C (22:00 - 06:00)', weavers: 6, avgYield: 91.4, output: '25,850 m', efficiency: '83.2%' },
-  ];
+  ] : [];
+
+  if (!isMock && baseData.length > 0) {
+    const shiftGroups = baseData.reduce((acc, emp) => {
+      const shift = emp.shift || 'Unknown Shift';
+      if (!acc[shift]) acc[shift] = { weavers: 0, totalYield: 0, totalOutput: 0, totalIdeal: 0 };
+      acc[shift].weavers += 1;
+      acc[shift].totalYield += emp.gradeAYield;
+      acc[shift].totalOutput += emp.actualOutputMeters;
+      acc[shift].totalIdeal += emp.idealOutputMeters;
+      return acc;
+    }, {} as Record<string, { weavers: number, totalYield: number, totalOutput: number, totalIdeal: number }>);
+    
+    shiftSummary = Object.entries(shiftGroups).map(([shift, stats]: [string, any]) => {
+      const avgYield = stats.weavers > 0 ? (stats.totalYield / stats.weavers) : 0;
+      const efficiency = stats.totalIdeal > 0 ? (stats.totalOutput / stats.totalIdeal) * 100 : 0;
+      return {
+        shift,
+        weavers: stats.weavers,
+        avgYield: Number(avgYield.toFixed(1)),
+        output: `${stats.totalOutput.toLocaleString()} m`,
+        efficiency: `${efficiency.toFixed(1)}%`
+      };
+    });
+  }
 
   const chartData = filteredEmployees.map((e) => ({
     name: e.name.split(' ')[0],
@@ -136,7 +159,7 @@ export const EmployeeProductionTab: React.FC<EmployeeProductionTabProps> = ({ sh
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-lg text-xs font-semibold">
               <Award className="w-3.5 h-3.5" />
-              24 Active Mill Technicians
+              {baseData.length} Active Mill Technicians
             </span>
           </div>
         </div>
@@ -185,22 +208,27 @@ export const EmployeeProductionTab: React.FC<EmployeeProductionTabProps> = ({ sh
           <span className="text-xs font-semibold text-slate-600 mr-1 flex items-center gap-1">
             <Filter className="w-3.5 h-3.5" /> Shift Filter:
           </span>
-          {[
-            { id: 'all', label: 'All Shifts (24)' },
-            { id: 'shift a', label: 'Shift A (Morning)' },
-            { id: 'shift b', label: 'Shift B (Evening)' },
-            { id: 'shift c', label: 'Shift C (Night)' },
-          ].map((tab) => (
+          <button
+            onClick={() => setSelectedShift('all')}
+            className={`px-2.5 py-1 text-xs rounded-lg font-medium transition-colors ${
+              selectedShift === 'all'
+                ? 'bg-indigo-600 text-white shadow-2xs font-semibold'
+                : 'text-slate-600 hover:bg-slate-100'
+            }`}
+          >
+            All Shifts
+          </button>
+          {shiftSummary.map((s) => (
             <button
-              key={tab.id}
-              onClick={() => setSelectedShift(tab.id)}
+              key={s.shift}
+              onClick={() => setSelectedShift(s.shift.toLowerCase())}
               className={`px-2.5 py-1 text-xs rounded-lg font-medium transition-colors ${
-                selectedShift === tab.id
+                selectedShift === s.shift.toLowerCase()
                   ? 'bg-indigo-600 text-white shadow-2xs font-semibold'
                   : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
-              {tab.label}
+              {s.shift}
             </button>
           ))}
         </div>
