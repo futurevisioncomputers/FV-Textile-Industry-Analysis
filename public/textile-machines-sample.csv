@@ -1,0 +1,9 @@
+machine_id,machine_name,department,rated_rpm,ideal_shift_capacity_m,actual_produced_m,uptime_pct,mtbf_hours
+LOOM-NXT-501,Picanol OmniPlus-i,Weaving Shed C,1150,1200,1185,97.5,210
+LOOM-NXT-502,Picanol OmniPlus-i,Weaving Shed C,1150,1200,1160,96.8,198
+LOOM-NXT-503,Picanol OmniPlus-i,Weaving Shed C,1150,1200,1190,98.1,224
+LOOM-NXT-504,Toyota JAT810,Weaving Shed C,950,900,820,91.2,110
+SPIN-NXT-601,Rieter K48 Compact,Spinning Shed B,22000,4200,4050,95.4,168
+SPIN-NXT-602,Rieter K48 Compact,Spinning Shed B,22000,4200,4120,96.1,174
+KNIT-NXT-701,Santoni Seamless,Knitting Shed B,48,1800,1650,91.2,125
+KNIT-NXT-702,Santoni Seamless,Knitting Shed B,48,1800,1710,93.5,145

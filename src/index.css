@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+  }
+  
+  html {
+    font-family: var(--font-sans);
+  }
+}

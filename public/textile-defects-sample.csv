@@ -1,0 +1,6 @@
+batch_id,loom_id,fabric_type,defect_type,severity_level,rejected_meters,financial_loss_inr,root_cause_analysis
+BCH-9001,LOOM-AJ-104,Cotton Poplin,Warp Breakage (Major),Critical,450,74250,Humidity drop caused static and massive warp snapping
+BCH-9002,LOOM-RP-202,Indigo Denim,Oil Stains,High,120,38400,Lubrication leak from primary rapier drive gear
+BCH-9003,LOOM-NXT-501,Linen 40s,Weft Float,Medium,45,9450,Broken weft detector sensor delayed stop motion
+BCH-9004,KNIT-CK-401,Single Jersey,Dropped Stitches,Critical,210,79800,Worn latch needles across sector 4 of the cylinder
+BCH-9005,LOOM-AJ-102,Cotton Poplin,Selvedge Tearing,Low,15,2475,Improper selvedge cutter tension calibration

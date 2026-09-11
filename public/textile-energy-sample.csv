@@ -1,0 +1,7 @@
+machine_id,machine_model,shift_date,peak_power_kw,total_kwh_consumed,energy_cost_inr,efficiency_status
+LOOM-AJ-101,Tsudakoma ZAX9200i,2026-03-12,15.8,365,2693,Optimal
+LOOM-AJ-104,Toyota JAT810 (Aging),2026-03-12,22.4,510,3763,Critical High (Motor Degradation)
+SPIN-RF-301,Rieter G38,2026-03-12,50.5,1140,8413,Optimal
+SPIN-RF-302,Rieter G38,2026-03-12,58.2,1320,9741,Warning (Spindle Friction)
+COMP-AIR-01,Atlas Copco GA75,2026-03-12,85.0,2040,15055,Optimal
+COMP-AIR-02,Atlas Copco GA75 (Leak),2026-03-12,94.5,2268,16737,Critical High (Pneumatic Leakage)

@@ -1,0 +1,6 @@
+yarn_lot_id,yarn_type,supplier,current_stock_kg,minimum_reorder_level_kg,status,lead_time_days,production_impact
+YRN-COT-40,40s Combed Cotton,Vardhman Textiles,4500,2000,Healthy,14,None
+YRN-DNM-07,7s Indigo Slub,Arvind Mills,850,1500,Critical Shortage,21,Denim production halt in 48 hours
+YRN-SLK-20,20/22D Raw Silk,Mysore Silk Board,120,50,Warning Low,30,Limit high-speed running
+YRN-VIS-30,30s Viscose Rayon,Grasim Ind,8400,3000,Overstocked,10,Capital blocked (₹14.2L)
+YRN-PLY-150,150D Texturized Poly,Reliance Ind,0,1000,Stockout,7,Poly-Cotton Twill completely halted

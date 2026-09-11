@@ -1,0 +1,7 @@
+operator_id,operator_name,operator_role,machine_assigned,shift_assigned,target_meters,actual_meters,quality_yield_pct
+OP-2001,Meera Patel,Master Weaver,LOOM-NXT-501,Shift A,1200,1185,99.2
+OP-2002,Sunita Sharma,Weaver,LOOM-NXT-502,Shift A,1200,1160,98.5
+OP-2003,Ramesh Singh,Master Weaver,LOOM-NXT-503,Shift B,1200,1190,99.8
+OP-2004,Abdul Khan,Weaver,LOOM-NXT-504,Shift B,900,820,95.4
+OP-2005,Vikram Desai,Spinning Technician,SPIN-NXT-601,Shift C,4200,4050,96.5
+OP-2006,Anita Desai,Spinning Technician,SPIN-NXT-602,Shift C,4200,4120,97.1

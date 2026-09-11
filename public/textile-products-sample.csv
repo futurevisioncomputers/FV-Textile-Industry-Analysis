@@ -1,0 +1,5 @@
+product_sku,product_desc,category,gsm,weave,ideal_capacity_units,actual_produced_units,rate_per_unit
+PRD-SLK-20,Mulberry Silk 20mm,Luxury Silk,85,Satin,500,480,750.00
+PRD-DNM-14,Heavy Indigo Denim 14oz,Denim,480,Twill 3/1,400,350,320.00
+PRD-LIN-40,Pure Linen 40 Lea,Shirting,140,Plain,600,580,210.00
+PRD-VIS-30,Viscose Rayon 30s,Dress Material,120,Crepe,800,750,140.00

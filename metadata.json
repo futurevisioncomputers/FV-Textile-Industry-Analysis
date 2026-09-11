@@ -1,0 +1,8 @@
+{
+  "name": "FV-Textile-Industry-Analysis",
+  "description": "Agentic AI pipeline for automated multi-stage document analysis, dataset discovery, entity resolution, and real-time business insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
